@@ -343,6 +343,8 @@ impl State {
         self.pointer = false;
         self.pressed = None;
         self.open(0);
+        self.home_scroll = 0.;
+        self.focus = self.first_content();
         pending
     }
 
@@ -2130,8 +2132,7 @@ impl State {
             return vec![];
         }
         if self.page != Page::Home {
-            self.open(0);
-            vec![]
+            self.return_home()
         } else {
             self.open_recents()
         }
